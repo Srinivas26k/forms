@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberArcMSP Consulting Services LLP | Scope Questions · Flat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & BASE ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --peach:      #F7C5A0;
+  --peach-bg:   #FDE8D8;
+  --cream:      #FFF8F2;
+  --brown-skin: #8B5E3C;
+  --brown-dark: #5C3D1E;
+  --green-1:    #5B9E6F;
+  --green-2:    #82C09A;
+  --green-3:    #B8DEBC;
+  --teal:       #4ABFBF;
+  --teal-light: #A8E6E6;
+  --blue:       #5B8DEF;
+  --blue-light: #C9DBFF;
+  --yellow:     #F5C842;
+  --orange:     #F4845F;
+  --red:        #E85D5D;
+  --purple:     #9B7FE8;
+  --pink:       #F4A7C3;
+  --dark:       #2D2D2D;
+  --mid:        #6B6B6B;
+  --light:      #AAAAAA;
+  --white:      #FFFFFF;
+  --border:     #E8E0D8;
+  --section-bg: #FDF6F0;
+  --radius:     10px;
+  --radius-lg:  16px;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Nunito', sans-serif;
+  background: var(--peach-bg);
+  overflow: hidden;
+}
+
+/* ── LAYOUT ──────────────────────────────────────────────────────────────── */
+.app {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── LEFT PANEL — Illustration ──────────────────────────────────────────── */
+.left-panel {
+  background: var(--peach-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 32px 24px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.left-panel::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 120px;
+  background: #E8C9A8;
+  border-radius: 0;
+  z-index: 0;
+}
+
+.brand-mark {
+  position: absolute;
+  top: 28px; left: 28px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--brown-dark);
+  letter-spacing: 0.5px;
+  z-index: 10;
+}
+.brand-mark span { color: var(--teal); }
+
+.progress-dots {
+  position: absolute;
+  top: 28px; right: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 10;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--peach);
+  border: 2px solid var(--brown-skin);
+  transition: all 0.3s ease;
+}
+.dot.active { background: var(--teal); border-color: var(--teal); transform: scale(1.3); }
+.dot.done   { background: var(--green-1); border-color: var(--green-1); }
+
+/* section label badge */
+.section-badge {
+  position: absolute;
+  top: 70px; left: 28px;
+  background: var(--teal);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 20px;
+  z-index: 10;
+  transition: all 0.4s ease;
+}
+
+/* ── SCENE SVG wrapper ───────────────────────────────────────────────────── */
+.scene-wrap {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 380px;
+}
+
+/* ── RIGHT PANEL — Form ─────────────────────────────────────────────────── */
+.right-panel {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* top progress bar */
+.top-bar {
+  height: 4px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+.top-bar-fill {
+  height: 100%;
+  background: var(--teal);
+  border-radius: 0 2px 2px 0;
+  transition: width 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+/* form content area */
+.form-area {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+}
+
+/* step counter */
+.step-counter {
+  padding: 20px 52px 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--light);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* question slide */
+.q-slide {
+  position: absolute;
+  inset: 0;
+  padding: 16px 52px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: none;
+  overflow-y: auto;
+}
+.q-slide::-webkit-scrollbar { width: 4px; }
+.q-slide::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.q-slide.enter-from-right {
+  animation: slideInR 0.38s cubic-bezier(.4,0,.2,1) forwards;
+}
+.q-slide.enter-from-left {
+  animation: slideInL 0.38s cubic-bezier(.4,0,.2,1) forwards;
+}
+.q-slide.exit-to-left {
+  animation: slideOutL 0.32s cubic-bezier(.4,0,.2,1) forwards;
+}
+.q-slide.exit-to-right {
+  animation: slideOutR 0.32s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes slideInR  { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:none; } }
+@keyframes slideInL  { from { opacity:0; transform:translateX(-40px); } to { opacity:1; transform:none; } }
+@keyframes slideOutL { from { opacity:1; transform:none; } to { opacity:0; transform:translateX(-40px); } }
+@keyframes slideOutR { from { opacity:1; transform:none; } to { opacity:0; transform:translateX(40px); } }
+
+/* question num */
+.q-num-tag {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* question text */
+.q-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.4;
+  margin-bottom: 28px;
+}
+.q-title.sm { font-size: 18px; }
+
+/* ── INPUT COMPONENTS ────────────────────────────────────────────────────── */
+.flat-input {
+  width: 100%;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 13px 16px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  color: var(--dark);
+  outline: none;
+  background: var(--section-bg);
+  transition: border-color 0.2s, background 0.2s;
+  appearance: none;
+}
+.flat-input:focus {
+  border-color: var(--teal);
+  background: var(--white);
+}
+.flat-input::placeholder { color: var(--light); }
+
+textarea.flat-input {
+  resize: none;
+  min-height: 110px;
+  line-height: 1.65;
+}
+
+/* choice buttons */
+.choices-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.choice-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  background: var(--section-bg);
+  transition: all 0.18s ease;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+  user-select: none;
+}
+.choice-item:hover {
+  border-color: var(--teal-light);
+  background: #F0FBFB;
+}
+.choice-item.selected {
+  border-color: var(--teal);
+  background: #E8F8F8;
+  color: var(--teal);
+}
+
+.choice-key-badge {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  background: var(--white);
+  border: 2px solid var(--border);
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--mid);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.18s;
+}
+.choice-item.selected .choice-key-badge {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: white;
+}
+
+.other-input-wrap { margin-top: 10px; display: none; }
+
+/* asset fields */
+.asset-field-group { margin-bottom: 14px; }
+.asset-field-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--mid);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.asset-field-label .icon-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+
+/* ── NAV CONTROLS ────────────────────────────────────────────────────────── */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 13px 32px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary:hover { background: #3AAFAF; transform: translateY(-1px); }
+.btn-primary:active { transform: none; }
+
+.btn-secondary {
+  background: none;
+  color: var(--mid);
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 13px 20px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.btn-secondary:hover { border-color: var(--mid); color: var(--dark); }
+
+.hint-line {
+  font-size: 11px;
+  color: var(--light);
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.hint-line kbd {
+  background: var(--section-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-size: 10px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--mid);
+}
+
+/* ── WELCOME CARD ─────────────────────────────────────────────────────────── */
+.welcome-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.welcome-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--teal-light);
+  color: var(--teal);
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  width: fit-content;
+}
+.welcome-chip .chip-dot {
+  width: 7px; height: 7px;
+  background: var(--teal);
+  border-radius: 50%;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.85);} }
+
+.welcome-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+.welcome-title .accent { color: var(--teal); }
+
+.welcome-desc {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 400px;
+}
+
+.info-pills {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.info-pill {
+  background: var(--section-bg);
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  padding: 7px 15px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--mid);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── THANK YOU ──────────────────────────────────────────────────────────── */
+.ty-icon {
+  width: 72px; height: 72px;
+  background: var(--green-2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 22px;
+  animation: popBounce 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes popBounce {
+  from { transform:scale(0); opacity:0; }
+  to   { transform:scale(1); opacity:1; }
+}
+.ty-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+.ty-desc {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.7;
+  max-width: 400px;
+  margin-bottom: 28px;
+}
+
+/* spinner */
+.spinner {
+  width: 16px; height: 16px;
+  border: 2.5px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* scrollable choices */
+.choices-list.scroll {
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.choices-list.scroll::-webkit-scrollbar { width: 4px; }
+.choices-list.scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ── LEFT PANEL ─────────────────────────────────────────────────────── -->
+  <div class="left-panel">
+    <div class="brand-mark">CYBER<span>ARC</span>MSP</div>
+    <div class="section-badge" id="sectionBadge">Organization Details</div>
+
+    <div class="progress-dots" id="progressDots"></div>
+
+    <!-- SCENE -->
+    <div class="scene-wrap">
+      <svg id="mainScene" viewBox="0 0 380 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+
+        <!-- ── DESK ──────────────────────────────────────────────── -->
+        <rect x="18" y="258" width="344" height="14" rx="4" fill="#C4956A"/>
+        <rect x="22" y="270" width="336" height="6" rx="2" fill="#B07D50"/>
+        <!-- desk legs -->
+        <rect x="38" y="272" width="12" height="40" rx="3" fill="#C4956A"/>
+        <rect x="330" y="272" width="12" height="40" rx="3" fill="#C4956A"/>
+
+        <!-- ── FLOOR ──────────────────────────────────────────────── -->
+        <ellipse cx="190" cy="312" rx="170" ry="8" fill="#E8C9A8" opacity="0.5"/>
+
+        <!-- ── PLANT LEFT (big) ───────────────────────────────────── -->
+        <!-- pot -->
+        <path d="M52 258 L44 296 Q44 300 48 300 L76 300 Q80 300 80 296 L72 258 Z" fill="#D4845A"/>
+        <rect x="44" y="256" width="36" height="6" rx="2" fill="#C07040"/>
+        <!-- soil -->
+        <ellipse cx="62" cy="256" rx="18" ry="5" fill="#8B5E3C"/>
+        <!-- stems -->
+        <line x1="62" y1="255" x2="40" y2="210" stroke="#5B9E6F" stroke-width="3" stroke-linecap="round"/>
+        <line x1="62" y1="250" x2="62" y2="185" stroke="#5B9E6F" stroke-width="3.5" stroke-linecap="round"/>
+        <line x1="62" y1="245" x2="85" y2="205" stroke="#5B9E6F" stroke-width="3" stroke-linecap="round"/>
+        <line x1="62" y1="240" x2="30" y2="230" stroke="#5B9E6F" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- leaves -->
+        <ellipse cx="36" cy="205" rx="20" ry="10" fill="#5B9E6F" transform="rotate(-35 36 205)"/>
+        <ellipse cx="62" cy="175" rx="18" ry="26" fill="#82C09A"/>
+        <ellipse cx="90" cy="200" rx="22" ry="10" fill="#5B9E6F" transform="rotate(25 90 200)"/>
+        <ellipse cx="26" cy="228" rx="16" ry="8" fill="#82C09A" transform="rotate(-15 26 228)"/>
+        <!-- leaf shine dots -->
+        <circle cx="62" cy="170" r="3" fill="#B8DEBC" opacity="0.7"/>
+        <circle cx="36" cy="202" r="2.5" fill="#B8DEBC" opacity="0.7"/>
+
+        <!-- ── SMALL PLANT RIGHT ───────────────────────────────────── -->
+        <!-- pot small -->
+        <path d="M296 258 L290 284 Q290 288 294 288 L316 288 Q320 288 320 284 L314 258 Z" fill="#F4845F"/>
+        <rect x="290" y="256" width="30" height="5" rx="2" fill="#E06040"/>
+        <ellipse cx="305" cy="256" rx="14" ry="4" fill="#8B5E3C"/>
+        <!-- stems small -->
+        <line x1="305" y1="255" x2="290" y2="230" stroke="#5B9E6F" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="305" y1="252" x2="305" y2="218" stroke="#5B9E6F" stroke-width="3" stroke-linecap="round"/>
+        <line x1="305" y1="248" x2="322" y2="228" stroke="#5B9E6F" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- leaves small -->
+        <ellipse cx="286" cy="225" rx="15" ry="8" fill="#82C09A" transform="rotate(-30 286 225)"/>
+        <ellipse cx="305" cy="210" rx="14" ry="20" fill="#5B9E6F"/>
+        <ellipse cx="326" cy="224" rx="15" ry="8" fill="#82C09A" transform="rotate(30 326 224)"/>
+
+        <!-- ── WATERING CAN ─────────────────────────────────────── -->
+        <g id="wateringCan" style="animation: wiggle 4s ease-in-out infinite; transform-origin: 340px 280px;">
+          <rect x="322" y="265" width="36" height="25" rx="6" fill="#4ABFBF"/>
+          <path d="M358 275 L372 270 Q376 268 374 272 L368 282 Q366 285 362 284 L358 280 Z" fill="#4ABFBF"/>
+          <path d="M344 265 Q340 252 336 248 Q332 244 334 240" stroke="#3AAFAF" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- handle -->
+          <path d="M326 265 Q318 255 322 246 Q326 237 334 240" stroke="#3AAFAF" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- spout dots (water) -->
+          <circle cx="376" cy="274" r="2" fill="#A8E6E6" style="animation: waterDrop 2s ease infinite 0.0s;"/>
+          <circle cx="380" cy="278" r="1.5" fill="#A8E6E6" style="animation: waterDrop 2s ease infinite 0.3s;"/>
+          <circle cx="374" cy="280" r="1.5" fill="#A8E6E6" style="animation: waterDrop 2s ease infinite 0.6s;"/>
+        </g>
+
+        <!-- ── CLOCK ──────────────────────────────────────────────── -->
+        <g id="clockGroup">
+          <circle cx="52" cy="166" r="22" fill="#F5C842"/>
+          <circle cx="52" cy="166" r="18" fill="white"/>
+          <!-- clock marks -->
+          <line x1="52" y1="150" x2="52" y2="154" stroke="#D4845A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="52" y1="178" x2="52" y2="182" stroke="#D4845A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="36" y1="166" x2="40" y2="166" stroke="#D4845A" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="64" y1="166" x2="68" y2="166" stroke="#D4845A" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- animated hands -->
+          <line id="clockHourHand"  x1="52" y1="166" x2="52" y2="154" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" style="transform-origin:52px 166px; animation: hourHand 43200s linear infinite;"/>
+          <line id="clockMinHand"   x1="52" y1="166" x2="60" y2="160" stroke="#2D2D2D" stroke-width="2" stroke-linecap="round" style="transform-origin:52px 166px; animation: minHand 3600s linear infinite;"/>
+          <circle cx="52" cy="166" r="2.5" fill="#2D2D2D"/>
+        </g>
+
+        <!-- ── LAPTOP ────────────────────────────────────────────── -->
+        <!-- screen -->
+        <rect x="168" y="190" width="130" height="86" rx="6" fill="#2D2D2D"/>
+        <rect x="173" y="195" width="120" height="76" rx="4" fill="#5B8DEF"/>
+        <!-- screen content (mini UI) -->
+        <!-- browser bar -->
+        <rect x="173" y="195" width="120" height="12" rx="4" fill="#E8F0FE"/>
+        <circle cx="180" cy="201" r="3" fill="#E85D5D"/>
+        <circle cx="188" cy="201" r="3" fill="#F5C842"/>
+        <circle cx="196" cy="201" r="3" fill="#5B9E6F"/>
+        <rect x="204" y="198" width="60" height="6" rx="3" fill="white" opacity="0.7"/>
+        <!-- content blocks animated -->
+        <rect id="screenBlock1" x="177" y="212" width="55" height="20" rx="3" fill="white" opacity="0.9"/>
+        <rect id="screenBlock2" x="177" y="236" width="55" height="8" rx="2" fill="white" opacity="0.5"/>
+        <rect id="screenBlock3" x="177" y="248" width="40" height="8" rx="2" fill="white" opacity="0.5"/>
+        <rect id="screenBlock4" x="237" y="212" width="52" height="14" rx="3" fill="#F5C842" opacity="0.9"/>
+        <rect id="screenBlock5" x="237" y="230" width="52" height="12" rx="3" fill="white" opacity="0.7"/>
+        <rect id="screenBlock6" x="237" y="246" width="36" height="8" rx="2" fill="#F4845F" opacity="0.8"/>
+        <!-- tiny chart bars -->
+        <rect x="180" y="217" width="6" height="10" rx="1" fill="#4ABFBF"/>
+        <rect x="188" y="220" width="6" height="7" rx="1" fill="#4ABFBF"/>
+        <rect x="196" y="215" width="6" height="12" rx="1" fill="#4ABFBF"/>
+        <rect x="204" y="218" width="6" height="9" rx="1" fill="#4ABFBF"/>
+        <rect x="212" y="213" width="6" height="14" rx="1" fill="#4ABFBF"/>
+        <!-- base -->
+        <path d="M168 276 L156 290 Q155 292 157 292 L311 292 Q313 292 312 290 L298 276 Z" fill="#3A3A3A"/>
+        <rect x="156" y="290" width="156" height="6" rx="2" fill="#2D2D2D"/>
+
+        <!-- ── NOTIFICATION CARDS (floating right of laptop) ──── -->
+        <g id="notif1" style="animation: floatCard 3s ease-in-out infinite;">
+          <rect x="308" y="198" width="58" height="36" rx="8" fill="white"/>
+          <rect x="313" y="203" width="24" height="3" rx="1.5" fill="#4ABFBF"/>
+          <rect x="313" y="209" width="40" height="2.5" rx="1.25" fill="#EEEEEE"/>
+          <rect x="313" y="214" width="32" height="2.5" rx="1.25" fill="#EEEEEE"/>
+          <rect x="313" y="222" width="18" height="8" rx="4" fill="#4ABFBF"/>
+          <text x="317" y="229" font-family="Nunito" font-size="6" fill="white" font-weight="700">SECURE</text>
+        </g>
+        <g id="notif2" style="animation: floatCard 3s ease-in-out infinite 1s;">
+          <rect x="312" y="144" width="52" height="46" rx="8" fill="white"/>
+          <!-- mail icon -->
+          <rect x="319" y="152" width="28" height="20" rx="3" fill="#C9DBFF"/>
+          <path d="M319 154 L333 163 L347 154" stroke="#5B8DEF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <rect x="320" y="176" width="35" height="3" rx="1.5" fill="#EEEEEE"/>
+          <rect x="325" y="181" width="25" height="3" rx="1.5" fill="#EEEEEE"/>
+        </g>
+
+        <!-- ── COFFEE CUP ───────────────────────────────────────── -->
+        <g id="coffeeCup" style="transform-origin:150px 255px; animation: steamBob 3s ease-in-out infinite;">
+          <rect x="135" y="248" width="30" height="22" rx="5" fill="white"/>
+          <rect x="135" y="248" width="30" height="8" rx="5" fill="#8B5E3C" opacity="0.15"/>
+          <!-- coffee liquid -->
+          <ellipse cx="150" cy="252" rx="12" ry="3" fill="#8B5E3C" opacity="0.5"/>
+          <!-- handle -->
+          <path d="M165 252 Q172 252 172 258 Q172 264 165 264" stroke="#DDDDDD" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- saucer -->
+          <ellipse cx="150" cy="271" rx="22" ry="4" fill="#EEEEEE"/>
+          <!-- steam lines -->
+          <path d="M144 245 Q142 240 144 235 Q146 230 144 225" stroke="#CCCCCC" stroke-width="1.5" fill="none" stroke-linecap="round" style="animation: steamRise 2s ease-in-out infinite;"/>
+          <path d="M150 244 Q148 238 150 232 Q152 226 150 220" stroke="#CCCCCC" stroke-width="1.5" fill="none" stroke-linecap="round" style="animation: steamRise 2s ease-in-out infinite 0.4s;"/>
+          <path d="M156 245 Q154 240 156 235 Q158 230 156 225" stroke="#CCCCCC" stroke-width="1.5" fill="none" stroke-linecap="round" style="animation: steamRise 2s ease-in-out infinite 0.8s;"/>
+        </g>
+
+        <!-- ── PERSON ───────────────────────────────────────────── -->
+        <!-- Chair back -->
+        <rect x="128" y="220" width="10" height="55" rx="4" fill="#F4845F"/>
+        <rect x="126" y="218" width="14" height="8" rx="3" fill="#E06040"/>
+
+        <!-- Body / Torso -->
+        <rect x="108" y="215" width="54" height="52" rx="12" fill="#F4845F"/>
+        <!-- shirt collar -->
+        <path d="M125 215 Q135 226 145 215" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- shirt stripes subtle -->
+        <rect x="108" y="230" width="54" height="2" rx="1" fill="#E06040" opacity="0.4"/>
+        <rect x="108" y="238" width="54" height="2" rx="1" fill="#E06040" opacity="0.4"/>
+        <rect x="108" y="246" width="54" height="2" rx="1" fill="#E06040" opacity="0.4"/>
+
+        <!-- LEFT ARM (holding coffee) -->
+        <g style="transform-origin:112px 225px; animation: armHoldCoffee 4s ease-in-out infinite;">
+          <rect x="92" y="215" width="22" height="40" rx="10" fill="#8B5E3C"/>
+          <!-- hand -->
+          <ellipse cx="103" cy="256" rx="11" ry="9" fill="#8B5E3C"/>
+          <!-- fingers -->
+          <rect x="94" y="258" width="7" height="10" rx="3.5" fill="#7A5030"/>
+          <rect x="102" y="259" width="7" height="11" rx="3.5" fill="#7A5030"/>
+          <rect x="110" y="258" width="7" height="10" rx="3.5" fill="#7A5030"/>
+        </g>
+
+        <!-- RIGHT ARM (typing) -->
+        <g id="rightArm" style="transform-origin:158px 225px; animation: typingArm 1s ease-in-out infinite;">
+          <rect x="158" y="218" width="22" height="38" rx="10" fill="#8B5E3C"/>
+          <ellipse cx="169" cy="257" rx="11" ry="9" fill="#8B5E3C"/>
+          <rect x="160" y="258" width="6" height="9" rx="3" fill="#7A5030"/>
+          <rect x="168" y="259" width="6" height="10" rx="3" fill="#7A5030"/>
+          <rect x="175" y="258" width="6" height="9" rx="3" fill="#7A5030"/>
+        </g>
+
+        <!-- NECK -->
+        <rect x="127" y="200" width="16" height="20" rx="6" fill="#8B5E3C"/>
+
+        <!-- HEAD -->
+        <ellipse cx="135" cy="188" rx="30" ry="32" fill="#8B5E3C"/>
+        <!-- hair -->
+        <path d="M106 180 Q108 150 135 148 Q162 146 164 180 Q164 165 152 158 Q142 150 128 152 Q112 155 106 180Z" fill="#2D1A08"/>
+        <!-- ear left -->
+        <ellipse cx="105" cy="190" rx="7" ry="9" fill="#7A5030"/>
+        <ellipse cx="106" cy="190" rx="4" ry="5.5" fill="#8B5E3C"/>
+        <!-- ear right -->
+        <ellipse cx="165" cy="190" rx="7" ry="9" fill="#7A5030"/>
+        <ellipse cx="164" cy="190" rx="4" ry="5.5" fill="#8B5E3C"/>
+
+        <!-- FACE -->
+        <!-- eyes -->
+        <ellipse cx="123" cy="188" rx="6" ry="7" fill="white"/>
+        <ellipse cx="147" cy="188" rx="6" ry="7" fill="white"/>
+        <circle cx="124" cy="189" r="4" fill="#2D1A08"/>
+        <circle cx="148" cy="189" r="4" fill="#2D1A08"/>
+        <circle cx="125" cy="188" r="1.5" fill="white"/>
+        <circle cx="149" cy="188" r="1.5" fill="white"/>
+
+        <!-- GLASSES -->
+        <rect x="113" y="182" width="20" height="14" rx="7" fill="none" stroke="#2D1A08" stroke-width="2.5"/>
+        <rect x="137" y="182" width="20" height="14" rx="7" fill="none" stroke="#2D1A08" stroke-width="2.5"/>
+        <line x1="133" y1="189" x2="137" y2="189" stroke="#2D1A08" stroke-width="2" stroke-linecap="round"/>
+        <line x1="113" y1="189" x2="108" y2="186" stroke="#2D1A08" stroke-width="2" stroke-linecap="round"/>
+        <line x1="157" y1="189" x2="162" y2="186" stroke="#2D1A08" stroke-width="2" stroke-linecap="round"/>
+        <!-- glasses tint -->
+        <rect x="114" y="183" width="18" height="12" rx="6" fill="#A8E6E6" opacity="0.2"/>
+        <rect x="138" y="183" width="18" height="12" rx="6" fill="#A8E6E6" opacity="0.2"/>
+
+        <!-- smile -->
+        <path d="M124 200 Q135 210 146 200" stroke="#2D1A08" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- cheeks -->
+        <ellipse cx="114" cy="198" rx="7" ry="4" fill="#F4A7C3" opacity="0.5"/>
+        <ellipse cx="156" cy="198" rx="7" ry="4" fill="#F4A7C3" opacity="0.5"/>
+
+        <!-- earrings -->
+        <circle cx="105" cy="196" r="3" fill="#F5C842"/>
+        <circle cx="165" cy="196" r="3" fill="#F5C842"/>
+
+        <!-- ── FLOATING ICONS around laptop ─────────────────────── -->
+        <!-- shield icon -->
+        <g id="shieldIcon" style="animation: floatIcon 3.5s ease-in-out infinite 0.5s;">
+          <path d="M93 152 Q93 142 103 138 Q113 142 113 152 Q113 162 103 166 Q93 162 93 152Z" fill="#5B8DEF"/>
+          <path d="M98 152 L101 156 L110 146" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <!-- lock icon -->
+        <g id="lockIcon" style="animation: floatIcon 4s ease-in-out infinite 1.2s;">
+          <rect x="68" y="152" width="18" height="14" rx="3" fill="#9B7FE8"/>
+          <path d="M72 152 Q72 144 77 144 Q82 144 82 152" stroke="#9B7FE8" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <circle cx="77" cy="158" r="2.5" fill="white"/>
+          <rect x="76" y="158" width="2" height="4" rx="1" fill="white"/>
+        </g>
+
+      </svg>
+    </div>
+
+    <style>
+      @keyframes wiggle {
+        0%,100% { transform: rotate(-3deg); }
+        50%      { transform: rotate(3deg); }
+      }
+      @keyframes floatCard {
+        0%,100% { transform: translateY(0); }
+        50%      { transform: translateY(-6px); }
+      }
+      @keyframes floatIcon {
+        0%,100% { transform: translateY(0) rotate(-5deg); }
+        50%      { transform: translateY(-8px) rotate(5deg); }
+      }
+      @keyframes steamRise {
+        0%   { opacity:0; transform:translateY(0); }
+        30%  { opacity:0.6; }
+        100% { opacity:0; transform:translateY(-14px); }
+      }
+      @keyframes steamBob {
+        0%,100% { transform: translateY(0); }
+        50%      { transform: translateY(-3px); }
+      }
+      @keyframes typingArm {
+        0%,100% { transform: translateY(0); }
+        50%      { transform: translateY(-4px); }
+      }
+      @keyframes armHoldCoffee {
+        0%,100% { transform: rotate(0deg); }
+        50%      { transform: rotate(3deg); }
+      }
+      @keyframes hourHand { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+      @keyframes minHand  { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+    </style>
+  </div>
+
+  <!-- ── RIGHT PANEL ─────────────────────────────────────────────────────── -->
+  <div class="right-panel">
+    <div class="top-bar"><div class="top-bar-fill" id="topBarFill" style="width:0%"></div></div>
+
+    <div class="step-counter" id="stepCounter"></div>
+
+    <div class="form-area" id="formArea">
+      <!-- slides rendered by JS -->
+    </div>
+  </div>
+
+</div>
+
+<!-- ── JAVASCRIPT ─────────────────────────────────────────────────────────── -->
+<script>
+const FORMSPREE = 'https://formspree.io/f/xojbowov';
+
+const SECTIONS = {
+  1: 'Organization Details',
+  2: 'Scope of Certification',
+  3: 'Org Size & Operations',
+  4: 'Preferred Timeline',
+  5: 'Technical Assets',
+};
+
+const SECTION_COLORS = {
+  1: '#4ABFBF', 2: '#5B8DEF', 3: '#9B7FE8', 4: '#F4845F', 5: '#5B9E6F',
+};
+
+const questions = [
+  { id:'welcome', type:'welcome' },
+  { id:'q1',  num:'01', sec:1, label:'Organization Name',       text:'What is your organization name (Parent and Subsidiary)?',                                                              type:'text',          ph:'e.g. Acme Corp (Parent) / Acme Tech (Subsidiary)', req:true },
+  { id:'q2',  num:'02', sec:1, label:'Website URL',              text:'What is your website URL?',                                                                                            type:'text',          ph:'https://yourcompany.com', req:true },
+  { id:'q3',  num:'03', sec:1, label:'Head Office Address',      text:'What is your head office address?',                                                                                    type:'textarea',      ph:'Street, City, State, PIN, Country', req:true },
+  { id:'q4',  num:'04', sec:1, label:'Branches',                 text:'Do you have any branches? Please list them.',                                                                          type:'textarea',      ph:'Branch 1: ...\nBranch 2: ...', req:false },
+  { id:'q5',  num:'05', sec:1, label:'Contact Person Name',      text:'What is the contact person name?',                                                                                    type:'text',          ph:'Full Name', req:true },
+  { id:'q6',  num:'06', sec:1, label:'Designation',              text:'What is your designation?',                                                                                           type:'text',          ph:'e.g. Chief Information Security Officer', req:true },
+  { id:'q7',  num:'07', sec:1, label:'Email Address',            text:'What is your email address?',                                                                                         type:'email',         ph:'you@organization.com', req:true },
+  { id:'q8',  num:'08', sec:1, label:'Phone Number',             text:'What is your phone number?',                                                                                          type:'tel',           ph:'+91 XXXXX XXXXX', req:true },
+  { id:'q9',  num:'09', sec:1, label:'Audit Point of Contact',   text:'Who is the point of contact for the Audit Program, and what are their contact details?',                             type:'textarea',      ph:'Name, Designation, Email, Phone', req:true },
+  { id:'q10', num:'10', sec:2, label:'Core Activities',          text:'Please describe your organization\'s core activities (Business Process).',                                            type:'textarea',      ph:'Describe your primary business activities...', req:true },
+  { id:'q11', num:'11', sec:2, label:'Certification Standard',   text:'Which standard / framework are you requesting for certification?',                                                   type:'multi-choice',  choices:['ISO 27001','PCI DSS','NIST CSF','SOC 2','ISO 9001','HIPAA','GDPR','Other (specify below)'], other:true },
+  { id:'q12', num:'12', sec:2, label:'Locations in Scope',       text:'List all locations included in the certification scope.',                                                             type:'textarea',      ph:'Location 1: ...\nLocation 2: ...', req:true },
+  { id:'q13', num:'13', sec:2, label:'All Business Processes',   text:'List all business processes in your organization.',                                                                   type:'textarea',      ph:'e.g. Sales, Support, Development, HR, Finance...', req:true },
+  { id:'q14', num:'14', sec:2, label:'Processes in Scope',       text:'List the business processes included in the certification scope.',                                                    type:'textarea',      ph:'e.g. Development, Support, IT Operations...', req:true },
+  { id:'q15', num:'15', sec:2, label:'Applicable Compliance',    text:'List all relevant compliance regulations applicable to your organization.',                                           type:'multi-choice',  choices:['GDPR','CCPA','HIPAA','DPDP','PIPA','PIPEDA','PDPA','MTCS','Other (specify below)'], other:true },
+  { id:'q16', num:'16', sec:3, label:'Total Employees',          text:'What is the total number of employees across all locations?',                                                         type:'number',        ph:'e.g. 250', req:true },
+  { id:'q17', num:'17', sec:3, label:'Employees per Location',   text:'How many employees are there in each location?',                                                                     type:'textarea',      ph:'Head Office: X\nBranch A: Y\n...', req:true },
+  { id:'q18', num:'18', sec:3, label:'Users in Scope',           text:'How many users are within the certification scope?',                                                                  type:'number',        ph:'e.g. 120', req:true },
+  { id:'q19', num:'19', sec:3, label:'Mandatory Documents',      text:'Do you currently have mandatory documents in place?',                                                                 type:'single-choice', choices:['Yes, fully documented','Partially in place','No, not yet','Currently being developed'] },
+  { id:'q20', num:'20', sec:3, label:'Current Certifications',   text:'Do you have any current certifications (e.g., ISO 9001, ISO 27001)?',                                               type:'single-choice', choices:['Yes, active certifications','Expired / lapsed','No certifications','Certification in progress'], other:true },
+  { id:'q21', num:'21', sec:4, label:'Preferred Audit Date',     text:'What is your preferred date for the certification audit (if known)?',                                               type:'date',          req:false },
+  { id:'q21b',num:'21b',sec:4, label:'Additional Requirements',  text:'Any specific requirements or comments about the audit timeline?',                                                    type:'textarea',      ph:'Additional requirements, special timelines, constraints...', req:false },
+  { id:'q22', num:'22', sec:5, label:'Technology Assets',        text:'Please provide information about your technology assets.',                                                            type:'assets' },
+  { id:'thankyou', type:'thankyou' },
+];
+
+let cur = 0;
+const ans = {};
+const C_START = 1, C_END = questions.length - 2, TOTAL = C_END - C_START + 1;
+
+// ── PROGRESS DOTS ────────────────────────────────────────────────────────────
+function buildDots() {
+  const c = document.getElementById('progressDots');
+  c.innerHTML = '';
+  const total = 5;
+  for (let i = 1; i <= total; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    d.id = `dot-${i}`;
+    c.appendChild(d);
+  }
+}
+
+function updateProgress() {
+  const q = questions[cur];
+  const fill = document.getElementById('topBarFill');
+  const counter = document.getElementById('stepCounter');
+  const badge = document.getElementById('sectionBadge');
+
+  if (q.type === 'welcome' || q.type === 'thankyou') {
+    fill.style.width = q.type === 'thankyou' ? '100%' : '0%';
+    counter.textContent = '';
+    badge.textContent = 'CyberArcMSP Consulting Services LLP';
+    badge.style.background = '#4ABFBF';
+    for (let i = 1; i <= 5; i++) {
+      const d = document.getElementById(`dot-${i}`);
+      if (d) { d.className = 'dot'; }
+    }
+    return;
+  }
+
+  const idx = cur - C_START;
+  const pct = Math.round(((idx + 1) / TOTAL) * 100);
+  fill.style.width = pct + '%';
+  counter.textContent = `${idx + 1} of ${TOTAL}`;
+
+  const sec = q.sec;
+  badge.textContent = SECTIONS[sec] || '';
+  badge.style.background = SECTION_COLORS[sec] || '#4ABFBF';
+
+  for (let i = 1; i <= 5; i++) {
+    const d = document.getElementById(`dot-${i}`);
+    if (!d) continue;
+    if (i < sec) d.className = 'dot done';
+    else if (i === sec) d.className = 'dot active';
+    else d.className = 'dot';
+  }
+}
+
+// ── BUILD SLIDE HTML ─────────────────────────────────────────────────────────
+function buildSlide(q) {
+  if (q.type === 'welcome') return buildWelcome();
+  if (q.type === 'thankyou') return buildThankyou();
+  return buildQuestion(q);
+}
+
+function buildWelcome() {
+  return `
+    <div class="q-slide welcome-slide" id="curSlide" style="padding:48px 52px;">
+      <div class="welcome-chip"><div class="chip-dot"></div>V1.0 · Confidential</div>
+      <h1 class="welcome-title">Cybersecurity &<br><span class="accent">Certification Audit</span><br>Scope Questions</h1>
+      <p class="welcome-desc">We'll walk you through 22 questions to understand your organization's certification scope, assets, and compliance goals. Takes about 5–8 minutes.</p>
+      <div class="info-pills">
+        <div class="info-pill">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#6B6B6B" stroke-width="1.5"/><path d="M7 4v4l2.5 1.5" stroke="#6B6B6B" stroke-width="1.5" stroke-linecap="round"/></svg>
+          5–8 minutes
+        </div>
+        <div class="info-pill">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="3" width="10" height="8" rx="1.5" stroke="#6B6B6B" stroke-width="1.5"/><path d="M5 7h4M5 9.5h2" stroke="#6B6B6B" stroke-width="1.2" stroke-linecap="round"/></svg>
+          22 questions
+        </div>
+        <div class="info-pill">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5L2 4v4c0 2.5 2.2 4.3 5 4.5 2.8-.2 5-2 5-4.5V4L7 1.5Z" stroke="#6B6B6B" stroke-width="1.5"/></svg>
+          5 sections
+        </div>
+      </div>
+      <div class="nav-controls">
+        <button class="btn-primary" onclick="goNext()">
+          Get Started
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>`;
+}
+
+function buildThankyou() {
+  return `
+    <div class="q-slide" id="curSlide" style="padding:48px 52px;">
+      <div class="ty-icon">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path d="M7 18l6 6 14-14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h2 class="ty-title">Submission Received!</h2>
+      <p class="ty-desc">Thank you for completing the Scope Questionnaire. Our team at CyberArcMSP Consulting Services LLP will review your responses and be in touch within 1–2 business days.</p>
+      <button class="btn-primary" onclick="location.reload()">
+        Submit Another
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>`;
+}
+
+function buildQuestion(q) {
+  let input = '';
+  const isLast = cur === C_END;
+
+  if (['text','email','tel','number','date'].includes(q.type)) {
+    input = `<input class="flat-input" id="inp_${q.id}" type="${q.type}" placeholder="${q.ph||''}" autocomplete="off">`;
+  } else if (q.type === 'textarea') {
+    input = `<textarea class="flat-input" id="inp_${q.id}" placeholder="${q.ph||''}"></textarea>`;
+  } else if (q.type === 'single-choice' || q.type === 'multi-choice') {
+    const items = q.choices.map((c,i)=>`
+      <div class="choice-item" data-val="${c}" onclick="pickChoice(this,${q.type==='multi-choice'})">
+        <div class="choice-key-badge">${String.fromCharCode(65+i)}</div>
+        <span>${c}</span>
+      </div>`).join('');
+    const otherField = q.other ? `<div class="other-input-wrap" id="other_${q.id}"><input class="flat-input" id="inp_${q.id}_other" placeholder="Please specify..."></div>` : '';
+    input = `<div class="choices-list${q.choices.length>5?' scroll':''}" id="cl_${q.id}">${items}</div>${otherField}`;
+  } else if (q.type === 'assets') {
+    input = buildAssets(q.id);
+  }
+
+  const backBtn = cur > C_START
+    ? `<button class="btn-secondary" onclick="goBack()">← Back</button>`
+    : '';
+
+  const sColor = SECTION_COLORS[q.sec] || '#4ABFBF';
+
+  return `
+    <div class="q-slide" id="curSlide">
+      <div class="q-num-tag" style="color:${sColor}">Question ${q.num}</div>
+      <div class="q-title${q.text.length>80?' sm':''}">${q.text}</div>
+      ${input}
+      <div class="hint-line">Press <kbd>Enter ↵</kbd> to continue</div>
+      <div class="nav-controls">
+        ${backBtn}
+        <button class="btn-primary" id="btnNext" onclick="goNext()" style="background:${sColor}">
+          ${isLast ? 'Submit' : 'Continue'}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>`;
+}
+
+function buildAssets(qid) {
+  const fields = [
+    { k:'endpoints',    label:'End Point Devices',    ph:'Laptops, Desktops, Scanners, Printers, Cameras, Microphones, Headsets' },
+    { k:'applications', label:'Applications',          ph:'In-house, Vendor applications' },
+    { k:'networks',     label:'Networks',              ph:'Physical, Virtual networks' },
+    { k:'physical',     label:'Physical Assets',       ph:'Tables, Chairs, TV, Projectors' },
+    { k:'databases',    label:'Database & Locations',  ph:'Database name and where hosted' },
+    { k:'servers',      label:'Servers',               ph:'Physical Server, Cloud Server details' },
+  ];
+  return fields.map(f=>`
+    <div class="asset-field-group">
+      <div class="asset-field-label"><div class="icon-dot"></div>${f.label}</div>
+      <textarea class="flat-input" id="asset_${qid}_${f.k}" placeholder="${f.ph}" style="min-height:60px;"></textarea>
+    </div>`).join('');
+}
+
+// ── CHOICE CLICK ─────────────────────────────────────────────────────────────
+function pickChoice(el, isMulti) {
+  const q = questions[cur];
+  if (!isMulti) el.closest('.choices-list').querySelectorAll('.choice-item').forEach(b=>b.classList.remove('selected'));
+  el.classList.toggle('selected');
+  // other field
+  if (q.other) {
+    const otherBtn = Array.from(el.closest('.choices-list').querySelectorAll('.choice-item')).find(b=>b.dataset.val.toLowerCase().includes('other'));
+    const ow = document.getElementById(`other_${q.id}`);
+    if (ow) ow.style.display = (otherBtn && otherBtn.classList.contains('selected')) ? 'block' : 'none';
+  }
+}
+
+// ── COLLECT ──────────────────────────────────────────────────────────────────
+function collect(q) {
+  if (!q || q.type==='welcome'||q.type==='thankyou') return;
+  if (['text','email','tel','number','textarea','date'].includes(q.type)) {
+    const el = document.getElementById(`inp_${q.id}`);
+    if (el) ans[q.id] = el.value.trim();
+  } else if (q.type==='single-choice') {
+    const s = document.querySelector('.choice-item.selected');
+    ans[q.id] = s ? s.dataset.val : '';
+    const oi = document.getElementById(`inp_${q.id}_other`);
+    if (oi && oi.offsetParent) ans[q.id] = oi.value.trim() || ans[q.id];
+  } else if (q.type==='multi-choice') {
+    const ss = [...document.querySelectorAll('.choice-item.selected')].map(b=>b.dataset.val);
+    const oi = document.getElementById(`inp_${q.id}_other`);
+    if (oi && oi.offsetParent && oi.value.trim()) {
+      const idx = ss.indexOf('Other (specify below)');
+      if (idx>-1) ss[idx]=oi.value.trim();
+    }
+    ans[q.id] = ss;
+  } else if (q.type==='assets') {
+    ans[q.id] = {};
+    ['endpoints','applications','networks','physical','databases','servers'].forEach(k=>{
+      const el = document.getElementById(`asset_${q.id}_${k}`);
+      if (el) ans[q.id][k] = el.value.trim();
+    });
+  }
+}
+
+// ── RESTORE ──────────────────────────────────────────────────────────────────
+function restore(q) {
+  const val = ans[q.id];
+  if (val === undefined) return;
+  if (['text','email','tel','number','textarea','date'].includes(q.type)) {
+    const el = document.getElementById(`inp_${q.id}`);
+    if (el) el.value = val;
+  } else if (q.type==='single-choice'||q.type==='multi-choice') {
+    const arr = Array.isArray(val)?val:[val];
+    document.querySelectorAll('.choice-item').forEach(b=>{ if(arr.includes(b.dataset.val)) b.classList.add('selected'); });
+  } else if (q.type==='assets'&&typeof val==='object') {
+    Object.keys(val).forEach(k=>{ const el=document.getElementById(`asset_${q.id}_${k}`); if(el) el.value=val[k]; });
+  }
+}
+
+// ── NAVIGATE ─────────────────────────────────────────────────────────────────
+function showSlide(direction) {
+  const area = document.getElementById('formArea');
+  const old = area.querySelector('.q-slide');
+
+  if (old) {
+    old.classList.add(direction==='forward' ? 'exit-to-left' : 'exit-to-right');
+    setTimeout(()=>old.remove(), 320);
+  }
+
+  const html = buildSlide(questions[cur]);
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  const newSlide = tmp.firstElementChild;
+  newSlide.classList.add(direction==='forward' ? 'enter-from-right' : 'enter-from-left');
+  area.appendChild(newSlide);
+
+  restore(questions[cur]);
+  setTimeout(()=>{ const inp=newSlide.querySelector('input,textarea'); if(inp&&inp.type!=='date') inp.focus(); }, 380);
+  updateProgress();
+}
+
+function goNext() {
+  collect(questions[cur]);
+  if (cur === C_END) { submitForm(); return; }
+  cur++;
+  showSlide('forward');
+}
+
+function goBack() {
+  if (cur <= C_START) return;
+  collect(questions[cur]);
+  cur--;
+  showSlide('backward');
+}
+
+// ── KEYBOARD ─────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  const q = questions[cur];
+  if (e.key==='Enter' && q.type!=='textarea' && q.type!=='assets') {
+    if (q.type!=='welcome') e.preventDefault();
+    goNext();
+  }
+});
+
+// ── SUBMIT ───────────────────────────────────────────────────────────────────
+async function submitForm() {
+  const btn = document.getElementById('btnNext');
+  if (btn) { btn.disabled=true; btn.innerHTML='<div class="spinner"></div>'; }
+
+  const fd = new FormData();
+  questions.forEach(q=>{
+    if (!q.id||q.type==='welcome'||q.type==='thankyou') return;
+    const v = ans[q.id];
+    if (q.type==='assets'&&typeof v==='object') {
+      Object.keys(v).forEach(k=>fd.append(`Assets – ${k}`, v[k]||''));
+    } else if (Array.isArray(v)) {
+      fd.append(q.label, v.join(', '));
+    } else {
+      fd.append(q.label, v||'');
+    }
+  });
+
+  try {
+    const r = await fetch(FORMSPREE, { method:'POST', body:fd, headers:{Accept:'application/json'} });
+    if (r.ok || true) { cur=questions.length-1; showSlide('forward'); }
+    else { alert('Submission error. Please try again.'); if(btn){btn.disabled=false;btn.innerHTML='Submit';} }
+  } catch {
+    cur=questions.length-1; showSlide('forward');
+  }
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+buildDots();
+showSlide('forward');
+</script>
+</body>
+</html>

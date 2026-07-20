@@ -499,6 +499,74 @@ textarea.flat-input {
 }
 .choices-list.scroll::-webkit-scrollbar { width: 4px; }
 .choices-list.scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ── COUNTER (STEPPER) FIELDS ────────────────────────────────────────────── */
+.counter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.counter-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 14px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--section-bg);
+  transition: border-color 0.18s ease;
+}
+.counter-item.has-value { border-color: var(--teal); }
+.counter-item-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.counter-item-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+}
+.counter-stepper {
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.counter-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--white);
+  color: var(--teal);
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+.counter-btn:hover { background: var(--teal-light); }
+.counter-value {
+  width: 44px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--dark);
+}
+.counter-error {
+  color: var(--red);
+  font-size: 12px;
+  margin-top: 10px;
+  display: none;
+}
 </style>
 </head>
 <body>
@@ -833,6 +901,13 @@ const questions = [
   { id:'q21', num:'21', sec:4, label:'Preferred Audit Date',     text:'What is your preferred date for the certification audit (if known)?',                                               type:'date',          req:false },
   { id:'q21b',num:'21b',sec:4, label:'Additional Requirements',  text:'Any specific requirements or comments about the audit timeline?',                                                    type:'textarea',      ph:'Additional requirements, special timelines, constraints...', req:false },
   { id:'q22', num:'22', sec:5, label:'Technology Assets',        text:'Please provide information about your technology assets.',                                                            type:'assets' },
+  { id:'q22b', num:'22b', sec:5, label:'IT Assets in Scope (Count)', text:'How many IT assets are included in the scope?', type:'counter', req:true, items:[
+    { k:'endpoints',    label:'Endpoint Devices' },
+    { k:'applications', label:'Applications' },
+    { k:'networks',     label:'Networks' },
+    { k:'databases',    label:'Database' },
+    { k:'cloud',        label:'Cloud' },
+  ] },
   { id:'thankyou', type:'thankyou' },
 ];
 
@@ -958,6 +1033,8 @@ function buildQuestion(q) {
     input = `<div class="choices-list${q.choices.length>5?' scroll':''}" id="cl_${q.id}">${items}</div>${otherField}`;
   } else if (q.type === 'assets') {
     input = buildAssets(q.id);
+  } else if (q.type === 'counter') {
+    input = buildCounter(q);
   }
 
   const backBtn = cur > C_START
@@ -987,7 +1064,7 @@ function buildAssets(qid) {
     { k:'endpoints',    label:'End Point Devices',    ph:'Laptops, Desktops, Scanners, Printers, Cameras, Microphones, Headsets' },
     { k:'applications', label:'Applications',          ph:'In-house, Vendor applications' },
     { k:'networks',     label:'Networks',              ph:'Physical, Virtual networks' },
-    { k:'physical',     label:'Physical Assets',       ph:'Tables, Chairs, TV, Projectors' },
+    { k:'physical',     label:'Physical Assets',       ph:'Laptops, Firewalls, Desktops, External Hard Drives, Server Rooms, Physical Cabling' },
     { k:'databases',    label:'Database & Locations',  ph:'Database name and where hosted' },
     { k:'servers',      label:'Servers',               ph:'Physical Server, Cloud Server details' },
   ];
@@ -996,6 +1073,33 @@ function buildAssets(qid) {
       <div class="asset-field-label"><div class="icon-dot"></div>${f.label}</div>
       <textarea class="flat-input" id="asset_${qid}_${f.k}" placeholder="${f.ph}" style="min-height:60px;"></textarea>
     </div>`).join('');
+}
+
+function buildCounter(q) {
+  const rows = q.items.map((it,i)=>`
+    <div class="counter-item" id="ci_${q.id}_${it.k}">
+      <div class="counter-item-left">
+        <div class="choice-key-badge">${String.fromCharCode(65+i)}</div>
+        <span class="counter-item-label">${it.label}</span>
+      </div>
+      <div class="counter-stepper">
+        <button type="button" class="counter-btn" onclick="stepCounter('${q.id}','${it.k}',-1)">−</button>
+        <span class="counter-value" id="val_${q.id}_${it.k}">0</span>
+        <button type="button" class="counter-btn" onclick="stepCounter('${q.id}','${it.k}',1)">+</button>
+      </div>
+    </div>`).join('');
+  return `<div class="counter-list" id="cl_${q.id}">${rows}</div><div class="counter-error" id="err_${q.id}">Please enter at least one asset count.</div>`;
+}
+
+function stepCounter(qid, key, delta) {
+  const el = document.getElementById(`val_${qid}_${key}`);
+  if (!el) return;
+  const next = Math.max(0, parseInt(el.textContent, 10) + delta);
+  el.textContent = next;
+  const item = document.getElementById(`ci_${qid}_${key}`);
+  if (item) item.classList.toggle('has-value', next > 0);
+  const err = document.getElementById(`err_${qid}`);
+  if (err) err.style.display = 'none';
 }
 
 // ── CHOICE CLICK ─────────────────────────────────────────────────────────────
@@ -1036,6 +1140,12 @@ function collect(q) {
       const el = document.getElementById(`asset_${q.id}_${k}`);
       if (el) ans[q.id][k] = el.value.trim();
     });
+  } else if (q.type==='counter') {
+    ans[q.id] = {};
+    q.items.forEach(it=>{
+      const el = document.getElementById(`val_${q.id}_${it.k}`);
+      ans[q.id][it.k] = el ? (parseInt(el.textContent, 10) || 0) : 0;
+    });
   }
 }
 
@@ -1051,6 +1161,13 @@ function restore(q) {
     document.querySelectorAll('.choice-item').forEach(b=>{ if(arr.includes(b.dataset.val)) b.classList.add('selected'); });
   } else if (q.type==='assets'&&typeof val==='object') {
     Object.keys(val).forEach(k=>{ const el=document.getElementById(`asset_${q.id}_${k}`); if(el) el.value=val[k]; });
+  } else if (q.type==='counter'&&typeof val==='object') {
+    Object.keys(val).forEach(k=>{
+      const el = document.getElementById(`val_${q.id}_${k}`);
+      if (el) el.textContent = val[k];
+      const item = document.getElementById(`ci_${q.id}_${k}`);
+      if (item) item.classList.toggle('has-value', val[k] > 0);
+    });
   }
 }
 
@@ -1077,6 +1194,18 @@ function showSlide(direction) {
 }
 
 function goNext() {
+  const q = questions[cur];
+  if (q.type==='counter' && q.req) {
+    const total = q.items.reduce((sum,it)=>{
+      const el = document.getElementById(`val_${q.id}_${it.k}`);
+      return sum + (el ? (parseInt(el.textContent, 10) || 0) : 0);
+    }, 0);
+    if (total <= 0) {
+      const err = document.getElementById(`err_${q.id}`);
+      if (err) err.style.display = 'block';
+      return;
+    }
+  }
   collect(questions[cur]);
   if (cur === C_END) { submitForm(); return; }
   cur++;
@@ -1093,7 +1222,7 @@ function goBack() {
 // ── KEYBOARD ─────────────────────────────────────────────────────────────────
 document.addEventListener('keydown', e => {
   const q = questions[cur];
-  if (e.key==='Enter' && q.type!=='textarea' && q.type!=='assets') {
+  if (e.key==='Enter' && q.type!=='textarea' && q.type!=='assets' && q.type!=='counter') {
     if (q.type!=='welcome') e.preventDefault();
     goNext();
   }
@@ -1110,6 +1239,8 @@ async function submitForm() {
     const v = ans[q.id];
     if (q.type==='assets'&&typeof v==='object') {
       Object.keys(v).forEach(k=>fd.append(`Assets – ${k}`, v[k]||''));
+    } else if (q.type==='counter'&&typeof v==='object') {
+      q.items.forEach(it=>fd.append(`${q.label} – ${it.label}`, String(v[it.k]||0)));
     } else if (Array.isArray(v)) {
       fd.append(q.label, v.join(', '));
     } else {
